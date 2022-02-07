@@ -15,7 +15,7 @@ function renderPortfolio() {
     gProjs.forEach(proj => {
         strHTMLs += `
 <div class="col-md-4 col-sm-6 portfolio-item">
-    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+    <a onClick="renderModal('${proj.id}')" class="portfolio-link" data-toggle="modal" href="#portfolioModal1" >
     <div class="portfolio-hover">
     <div class="portfolio-hover-content">
     <i class="fa fa-plus fa-3x"></i>
@@ -31,4 +31,13 @@ function renderPortfolio() {
 `
     })
     $('.items').html(strHTMLs)
+}
+
+function renderModal(projId) {
+    console.log(projId);
+    const proj = gProjs.find(proj => proj.id === projId)
+    $('.modal-body h2').text(proj.name)
+    $('.item-intro').text(proj.title)
+    $('.modal-body img').attr('src', `img/portfolio/${proj.id}-full.png`)
+    $('.desc').text(proj.desc)
 }
